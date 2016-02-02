@@ -25,6 +25,19 @@ window.onload = function(){
     var authorTag = document.createElement('cite')
     authorTag.innerText = quote.author; 
     articleTag.appendChild(authorTag);
+
+    var deleteButton = document.createElement('input');
+    deleteButton.setAttribute('type', 'submit');
+    deleteButton.setAttribute('id', 'delete');
+    deleteButton.setAttribute('value', 'Delete');
+    articleTag.appendChild(deleteButton)
+
+    deleteButton.onclick = function(){
+    console.log('got clicked');
+    targetQuote = this.parentNode.parentNode.removeChild(this.parentNode);
+    deletedQuote = quotes.indexOf(targetQuote);
+    quotes.splice(deletedQuote, 1);
+    }
   }
 
   for (var i = 0; i < quotes.length; i++) {
@@ -38,22 +51,22 @@ window.onload = function(){
   var handleClick = function(){
     console.log('Woh I got clicked');
 
-    var getQuote = document.getElementById('quote-text-input').value;
-    console.log('got text', getQuote);
+  var getQuote = document.getElementById('quote-text-input').value;
+  console.log('got text', getQuote);
 
-    var getAuthor = document.getElementById('author-text-input').value;
-    console.log('got text', getAuthor);
+  var getAuthor = document.getElementById('author-text-input').value;
+  console.log('got text', getAuthor);
 
-    var articleTag = document.createElement('article')
-    selectElement.appendChild(articleTag);
+  var articleTag = document.createElement('article')
+  selectElement.appendChild(articleTag);
 
-    var quoteTag = document.createElement('blockquote')
-    quoteTag.innerText = ('"' + getQuote + '"');
-    articleTag.appendChild(quoteTag)
+  var quoteTag = document.createElement('blockquote')
+  quoteTag.innerText = ('"' + getQuote + '"');
+  articleTag.appendChild(quoteTag)
 
-    var authorTag = document.createElement('cite')
-    authorTag.innerText = getAuthor; 
-    articleTag.appendChild(authorTag);
+  var authorTag = document.createElement('cite')
+  authorTag.innerText = getAuthor; 
+  articleTag.appendChild(authorTag);
   }
 //prevents refresh when pressing return
   var form = document.getElementById('quote-form');
@@ -62,7 +75,6 @@ window.onload = function(){
     event.preventDefault();
     handleClick();
   }
-
   button.onclick = handleClick;
 
   
